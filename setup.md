@@ -41,6 +41,41 @@ sudo -u root git clone git@github.com:WiseTrap/honeypot.git /var/www/honeypot
 
 ---
 
+## Step 3.1: Configure environment file
+
+The project uses a local `.env` file for sensitive configuration such as:
+
+- Database credentials
+- Application URL
+- Secret keys
+
+The `.env` file is intentionally ignored by Git and is not updated from the repository.
+
+Create your local environment file:
+
+```bash
+cp /var/www/honeypot/.env.example /var/www/honeypot/.env
+```
+
+Then edit it:
+
+```bash
+nano /var/www/honeypot/.env
+```
+
+Example configuration:
+
+```env
+DOMAIN=honeypot.wise.local
+DB_HOST=localhost
+DB_NAME=wisedb
+DB_PORT=3306
+DB_USER=wiseUser
+DB_PASSWORD=xlXXDrcfxxsZDirG
+```
+
+---
+
 ## Step 4: Set secure permissions
 
 ```bash
