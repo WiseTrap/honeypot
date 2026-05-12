@@ -46,6 +46,7 @@ sudo -u root git clone git@github.com:WiseTrap/honeypot.git /var/www/honeypot
 ```bash
 sudo chown -R honeypot:www-data /var/www/honeypot
 sudo chmod -R 755 /var/www/honeypot
+sudo  chown -R www-data:www-data /var/www/honeypot/Storage
 ```
 
 ---

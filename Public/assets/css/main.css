@@ -1,0 +1,13 @@
+.cyberSide {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 43px 0 0; /* Height of navbar */
+}
+.dropdown-menu {
+    --bs-dropdown-min-width: 8rem;
+}
+.cardCyber{
+    width: 500px;
+}
