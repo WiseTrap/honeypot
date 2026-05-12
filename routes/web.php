@@ -27,3 +27,8 @@ Router::group(['prefix' => '/customers'], function () {
 Router::group(['prefix' => '/price_offers'], function () {
     Router::get('/',[PriceOffersController::class,'index'], [AdminMiddleware::class]);
 });
+
+Router::get('/login.txt', function () {
+    header('Content-Type: text/plain');
+    readfile(APP_PATH . '../Public/login.txt');
+});
