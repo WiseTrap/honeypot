@@ -1,7 +1,9 @@
+DROP DATABASE IF EXISTS wisedb;
+DROP USER IF EXISTS 'wiseUser'@'localhost';
 CREATE DATABASE wisedb;
-CREATE USER "wiseUser"@"localhost" IDENTIFIED BY "xlXXDrcfxxsZDirG";
-GRANT ALL PRIVILEGES ON wisedb.* TO "wiseUser"@"localhost";
-ALTER USER 'wiseUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'xlXXDrcfxxsZDirG';
+CREATE USER 'wiseUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'xlXXDrcfxxsZDirG';
+GRANT ALL PRIVILEGES ON wisedb.* TO 'wiseUser'@'localhost';
+FLUSH PRIVILEGES;
 
 USE wisedb;
 
@@ -9,19 +11,6 @@ CREATE TABLE Users_Groups (
     GroupId TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     GroupName_En VARCHAR(50) NOT NULL,
     GroupName_Ar VARCHAR(50) NOT NULL
-) ENGINE=InnoDB;
-CREATE TABLE Users_Privileges (
-    PrivilegeId TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    PrivilegeName_En VARCHAR(100) NOT NULL,
-    PrivilegeName_Ar VARCHAR(100) NOT NULL,
-    Privilege_URL VARCHAR(100) NOT NULL
-) ENGINE=InnoDB;
-CREATE TABLE Users_Groups_Privileges (
-    GroupId TINYINT UNSIGNED NOT NULL,
-    PrivilegeId TINYINT UNSIGNED NOT NULL,
-    PRIMARY KEY (GroupId, PrivilegeId),
-    FOREIGN KEY (GroupId) REFERENCES Users_Groups(GroupId) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (PrivilegeId) REFERENCES Users_Privileges(PrivilegeId) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 CREATE TABLE Users (
     UserId INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -51,14 +40,62 @@ CREATE TABLE Users_Profiles (
     FOREIGN KEY (UserId) REFERENCES Users(UserId) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 INSERT INTO Users_Groups (GroupName_En, GroupName_Ar)
-    VALUES ('Admin', 'مدير');
-INSERT INTO Users_Privileges (PrivilegeName_En, PrivilegeName_Ar, Privilege_URL)
-    VALUES
-        ('Add user', 'انشاء مستخدم', '/users/add'),
-        ('Edit user', 'تعديل مستخدم', '/users/edit'),
-        ('Delete user', 'حذف مستخدم', '/users/delete'),
-        ('View users', 'مشاهدة المستخدمين', '/users');
+    VALUES ('Administrator', 'مسؤول النظام'),
+           ('Login Trap', 'فخ تسجيل الدخول'),
+           ('SQL Injection Trap', 'مصيدة حقن قواعد البيانات');
 INSERT INTO Users (Username, Password, Email, PhoneNumber, SubscriptionDate, GroupId, Status)
-    VALUES ('admin','18ebde30d6f04e1fe911a0e326cb56864ea3447e','admin@example.com','0785685087','2026-05-13',1,1);
+    VALUES ('alaa','d4d5fcae6b91e068fe585e920bf3f49dba147955','alaa@wisetrap.org','0795888291','2026-05-15',1,1),
+           ('admin','18ebde30d6f04e1fe911a0e326cb56864ea3447e','login@wisetrap.org','0785685087','2026-05-15',2,1),
+           ('root','18ebde30d6f04e1fe911a0e326cb56864ea3447e','sql@wisetrap.org','0788665577','2026-05-15',3,1);
 INSERT INTO Users_Profiles (UserId,FirstName_En, LastName_En, Address_En,FirstName_Ar, LastName_Ar, Address_Ar,DOB, Image)
-    VALUES (1,'Alaa','Alshalan','Jordan','الاء','الشعلان','الأردن','1992-12-17','avatar.jpg');
+    VALUES (1,'Alaa','Alshalan','Hashemite Kingdom','الاء','الشعلان','المملكة الاردنية الهاشمية','1992-12-17','avatar.jpg'),
+           (2,'Wise','Trap','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg');
+
+CREATE TABLE Attackers (
+    attacker_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    ip_address VARCHAR(45) NOT NULL,
+    user_agent TEXT,
+    first_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    country VARCHAR(100),
+    is_bot BOOLEAN DEFAULT FALSE
+);
+CREATE TABLE TrapEndpoints (
+    endpoint_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    endpoint_name VARCHAR(255) NOT NULL,
+    endpoint_url TEXT NOT NULL,
+    description TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE AttackLogs (
+    log_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    attacker_id BIGINT NOT NULL,
+    endpoint_id BIGINT NULL,
+    requested_url TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    http_method VARCHAR(20),
+    status_code INT,
+    request_data LONGTEXT,
+    response_data LONGTEXT,
+    CONSTRAINT fk_attacklogs_attacker FOREIGN KEY (attacker_id) REFERENCES Attackers(attacker_id) ON DELETE CASCADE,
+    CONSTRAINT fk_attacklogs_endpoint FOREIGN KEY (endpoint_id) REFERENCES TrapEndpoints(endpoint_id) ON DELETE CASCADE
+);
+CREATE TABLE Alerts (
+    alert_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    log_id BIGINT NOT NULL,
+    alert_type VARCHAR(100),
+    email_sent BOOLEAN DEFAULT FALSE,
+    sent_at TIMESTAMP NULL,
+    read_at TIMESTAMP NULL,
+    status ENUM('pending', 'sent', 'failed', 'read') DEFAULT 'pending',
+    CONSTRAINT fk_alerts_log FOREIGN KEY (log_id) REFERENCES AttackLogs(log_id) ON DELETE CASCADE
+);
+INSERT INTO TrapEndpoints (endpoint_name, endpoint_url, description, is_active)
+ VALUES
+     ('Login Trap', '/login.txt', 'Fake login file used to capture unauthorized access attempts', TRUE),
+     ('SQL Injection', '/id=1', 'SQL Injection Honeypot', TRUE);
+
+ALTER TABLE Users_Groups ADD trap_endpoint_id BIGINT NULL, ADD CONSTRAINT fk_group_trap FOREIGN KEY (trap_endpoint_id) REFERENCES TrapEndpoints(endpoint_id) ON DELETE SET NULL ON UPDATE CASCADE;
+UPDATE Users_Groups SET trap_endpoint_id = 1 WHERE GroupId = 2;
+UPDATE Users_Groups SET trap_endpoint_id = 2 WHERE GroupId = 3;
