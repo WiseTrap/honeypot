@@ -56,4 +56,4 @@
         </div>
     </div>
 </div>
-<p class="text-danger text-center"><small><?= 'Log in to the control panel'; ?></p>
+<p class="text-danger text-center"><small>We are <b>not responsible</b> for any misuse of our services.</small></p>
