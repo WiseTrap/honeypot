@@ -38,6 +38,7 @@ class Application
     {
         try {
             echo $this->router->dispatch();
+            HoneypotLogger::log();
         } catch (Exception $e) {
             $this->handleException($e);
         }

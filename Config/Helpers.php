@@ -17,9 +17,9 @@ if (!function_exists('hasRole')) {
             return false;
         }
         $rolesMap = [
-            'admin' => 1,
-            'leader'=> 2,
-            'User'  => 3,
+            'admin'         => 1,
+            'loginTrap'     => 2,
+            'SQLInjection'  => 3,
         ];
         $userRole = Application::$app->user->GroupId ?? null;
         if (is_array($roles)) {

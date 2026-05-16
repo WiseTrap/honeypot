@@ -25,7 +25,14 @@ class View
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
     protected static function getViewPath(string $view): string
-    {;
+    {
+        $user = Application::$app->user;
+        if ($user && method_exists($user, 'getViewNamespace')) {
+            $namespace = $user->getViewNamespace();
+            if ($namespace) {
+                $view = $namespace . '.' . $view;
+            }
+        }
         $view = str_replace('.', DS, $view);
         return APP_PATH . 'Views' . DS . $view . '.tpl.php';
     }

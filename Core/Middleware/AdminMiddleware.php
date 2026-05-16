@@ -11,11 +11,6 @@ class AdminMiddleware implements Contract
         if (Application::$app->user === null || Application::$app->isGuest()) {
             redirect('/auth');
         }
-
-        if (!hasRole('admin')) {
-            redirect('/dashboard');
-        }
-
         return $next($request);
     }
 }
