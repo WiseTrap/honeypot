@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS wisedb;
 DROP USER IF EXISTS 'wiseUser'@'localhost';
 CREATE DATABASE wisedb;
-CREATE USER 'wiseUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'xlXXDrcfxxsZDirG';
+CREATE USER 'wiseUser'@'localhost' IDENTIFIED BY 'xlXXDrcfxxsZDirG';
 GRANT ALL PRIVILEGES ON wisedb.* TO 'wiseUser'@'localhost';
 FLUSH PRIVILEGES;
 
@@ -49,7 +49,8 @@ INSERT INTO Users (Username, Password, Email, PhoneNumber, SubscriptionDate, Gro
            ('root','18ebde30d6f04e1fe911a0e326cb56864ea3447e','sql@wisetrap.org','0788665577','2026-05-15',3,1);
 INSERT INTO Users_Profiles (UserId,FirstName_En, LastName_En, Address_En,FirstName_Ar, LastName_Ar, Address_Ar,DOB, Image)
     VALUES (1,'Alaa','Alshalan','Hashemite Kingdom','الاء','الشعلان','المملكة الاردنية الهاشمية','1992-12-17','avatar.jpg'),
-           (2,'Wise','Trap','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg');
+           (2,'Wise','Trap','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg'),
+           (3,'Wise','SQL','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg');
 
 CREATE TABLE Attackers (
     attacker_id BIGINT PRIMARY KEY AUTO_INCREMENT,
