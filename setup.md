@@ -80,7 +80,7 @@ DB_PASSWORD=xlXXDrcfxxsZDirG
 Import the prepared SQL file included in the project:
 
 ```bash
-sudo mysql wisedb < /var/www/honeypot/Databases.sql
+sudo mysql < /var/www/honeypot/Databases.sql
 ```
 
 ---
