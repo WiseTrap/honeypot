@@ -6,7 +6,7 @@ class CustomersController extends Controller
 {
     public function index(): string|array|bool
     {
-        $this->setLayoutParam('title', 'customers');
+        $this->setLayoutParam('title', 'Customers');
         return $this->render('customers.index');
     }
 }
