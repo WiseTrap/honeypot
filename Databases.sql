@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS wisedb;
 DROP USER IF EXISTS 'wiseUser'@'localhost';
 CREATE DATABASE wisedb;
-CREATE USER 'wiseUser'@'localhost' IDENTIFIED BY 'xlXXDrcfxxsZDirG';
+CREATE USER 'wiseUser'@'localhost' IDENTIFIED BY 'W1se@2026#SecurePwd';
 GRANT ALL PRIVILEGES ON wisedb.* TO 'wiseUser'@'localhost';
 FLUSH PRIVILEGES;
 
