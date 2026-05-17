@@ -8,12 +8,12 @@
             <form action="<?= e('/auth'); ?>" method="POST">
                 <div class="form-floating mb-3">
                     <input name="username" value="<?= e($user->username); ?>" type="text" class="form-control <?= $user->hasError('username') ? 'is-invalid' : ''; ?>" id="floatingUsername" aria-describedby="UsernameFeedback" placeholder="Username">
-                    <label for="floatingUsername"><?= 'Username'; ?></label>
+                    <label for="floatingUsername">Username</label>
                     <div id="UsernameFeedback" class="invalid-feedback text-center"><?= $user->getError('username'); ?></div>
                 </div>
                 <div class="form-floating">
                     <input name="password" type="password" class="form-control <?= $user->hasError('password') ? 'is-invalid' : ''; ?>" id="floatingPassword" aria-describedby="PasswordFeedback" placeholder="Password" autocomplete="off">
-                    <label for="floatingPassword"><?= 'Password'; ?></label>
+                    <label for="floatingPassword">Password</label>
                     <div id="PasswordFeedback" class="invalid-feedback text-center"><?= $user->getError('password'); ?></div>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
