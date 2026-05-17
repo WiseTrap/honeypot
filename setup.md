@@ -1,8 +1,19 @@
 # WISETrap Honeypot – Setup Guide for Ubuntu Server (Apache)
 
-This guide walks you through installing the WISETrap credential honeypot on a fresh **Ubuntu Server** (20.04 / 22.04 / 24.04) with Apache, MySQL, and PHP.
+This guide walks you through installing the WISETrap multi-vector honeypot framework on a fresh **Ubuntu Server** (20.04 / 22.04 / 24.04 / 26.04 LTS) using Apache, MySQL, and PHP.
 
-The honeypot is a fake login panel that logs every login attempt (IP, timestamp, username, password, user agent) and then shows fake data to the attacker.
+WISETrap is a modular cybersecurity honeypot platform designed to simulate vulnerable web applications and attack surfaces for monitoring, logging, and analyzing malicious activity.
+
+The framework supports multiple trap types, including:
+
+- Fake login panels (credential harvesting traps)
+- SQL Injection traps (soon)
+- XSS traps (soon)
+- File upload traps (soon)
+- 0Day Custom web vulnerability simulations (soon)
+- Additional extensible trap modules (soon)
+
+WISETrap records attacker interactions such as IP addresses, timestamps, payloads, user agents, submitted credentials, uploaded files, and other request data for security analysis and research purposes.
 
 ---
 
@@ -10,17 +21,16 @@ The honeypot is a fake login panel that logs every login attempt (IP, timestamp,
 
 - Ubuntu Server (minimal installation is fine)
 - `sudo` access
-- Git installed (`sudo apt install git -y`)
-- GitHub SSH key added to your `wiseTrap` organization (or use HTTPS)
 
 ---
 
-## Step 1: Install Apache, PHP, MySQL
+## Step 1: Install Apache, PHP, MySQL, and Git
 
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql -y
-sudo mysql_secure_installation && nano /etc/apache2/mods-enabled/dir.conf
+sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql git -y
+sudo mysql_secure_installation
+sudo nano /etc/apache2/mods-enabled/dir.conf
 ```
 
 ---
@@ -36,7 +46,7 @@ sudo useradd -r -s /usr/sbin/nologin honeypot
 ## Step 3: Clone the repository
 
 ```bash
-sudo -u root git clone git@github.com:WiseTrap/honeypot.git /var/www/honeypot
+sudo -u root git clone https://github.com/WiseTrap/honeypot.git /var/www/honeypot
 ```
 
 ---
@@ -71,7 +81,7 @@ DB_HOST=localhost
 DB_NAME=wisedb
 DB_PORT=3306
 DB_USER=wiseUser
-DB_PASSWORD=xlXXDrcfxxsZDirG
+DB_PASSWORD=W1se@2026#SecurePwd
 ```
 
 ---
@@ -94,7 +104,24 @@ sudo  chown -R www-data:www-data /var/www/honeypot/Storage
 
 ---
 
-## Step 5: Configure Apache virtual host
+## Step 5: Enable Required Apache Modules
+
+```bash
+sudo a2enmod rewrite headers ssl
+sudo systemctl reload apache2
+```
+
+### Note
+
+If you have not created a self-signed SSL wildcard certificate yet, please refer to the following guide before continuing:
+
+[SSL_WILDCARD.md](https://github.com/WiseTrap/honeypot/blob/main/SSL_WILDCARD.md)
+
+This step is required before configuring the HTTPS (443) virtual host.
+
+---
+
+## Step 6: Configure Apache virtual host
 
 ```bash
 sudo nano /etc/apache2/sites-available/honeypot.conf
@@ -107,6 +134,7 @@ Paste the following (change `ServerName` to your `domain` or IP):
     DocumentRoot /var/www/honeypot/Public
 
     RewriteEngine On
+    RewriteCond %{HTTPS} !=on
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     <Directory /var/www/honeypot/Public>
@@ -189,15 +217,6 @@ Paste the following (change `ServerName` to your `domain` or IP):
 Enable the site:
 ```bash
 sudo a2ensite honeypot-ssl.conf
-sudo systemctl reload apache2
-```
-
----
-
-## Step 6: Enable SSL and reload Apache
-
-```bash
-sudo a2enmod rewrite headers ssl
 sudo systemctl reload apache2
 ```
 
