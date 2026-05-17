@@ -2,6 +2,11 @@
 
 This document explains how to create and use a self-signed Wildcard SSL certificate for WISETrap internal environment.
 
+**Important note about naming:**
+
+This document uses the term "SSL" (Secure Sockets Layer) because it is the common historical name.
+However, the protocol actually used by the openssl commands (with -sha256, etc.) is TLS 1.2/1.3 (Transport Layer Security) – the modern, secure standard.
+Old SSL versions (SSLv2, SSLv3) are deprecated and insecure. Whenever you see "SSL" in this guide, we mean TLS in practice.
 ---
 
 ## 1. Create Root Certificate Authority (CA)
