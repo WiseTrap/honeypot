@@ -6,7 +6,7 @@ WISETrap is a modular cybersecurity honeypot platform designed to emulate vulner
 
 The framework is intended for defensive cybersecurity operations, security research, detection engineering, threat intelligence, and educational use only.
 
-> ⚠️ WISETrap must be deployed exclusively in authorized, isolated, and legally compliant environments. The developers and contributors are not responsible for any misuse, unauthorized deployment, or illegal activity conducted using this software.
+> WISETrap must be deployed exclusively in authorized, isolated, and legally compliant environments. The developers and contributors are not responsible for any misuse, unauthorized deployment, or illegal activity conducted using this software.
 
 ---
 
