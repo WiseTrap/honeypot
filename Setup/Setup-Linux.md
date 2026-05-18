@@ -12,7 +12,7 @@ The framework is intended for defensive cybersecurity operations, security resea
 
 ## Prerequisites
 
-- Ubuntu Server (minimal installation is fine)
+- [Ubuntu Server (minimal installation is fine)](https://ubuntu.com/download/server?github.com/WiseTrap)
 - `sudo` access
 
 ---
