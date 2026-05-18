@@ -1,8 +1,12 @@
-# WISETrap Honeypot – Setup Guide for Ubuntu Server (Apache)
+# WISETrap Honeypot — Ubuntu Deployment Guide
 
-This guide walks you through installing the WISETrap multi-vector honeypot framework on a fresh **Ubuntu Server** (20.04 / 22.04 / 24.04 / 26.04 LTS) using Apache, MySQL, and PHP.
+This guide provides step-by-step instructions for deploying the WISETrap multi-vector honeypot framework on a fresh Ubuntu Server environment using Apache, PHP, and MySQL.
 
-WISETrap is a modular cybersecurity honeypot platform designed to simulate vulnerable web applications and attack surfaces for monitoring, logging, and analyzing malicious activity.
+WISETrap is a modular cybersecurity honeypot platform designed to emulate vulnerable web applications and exposed attack surfaces for the purpose of monitoring, logging, analyzing, and studying malicious activity in controlled environments.
+
+The framework is intended for defensive cybersecurity operations, security research, detection engineering, threat intelligence, and educational use only.
+
+> ⚠️ WISETrap must be deployed exclusively in authorized, isolated, and legally compliant environments. The developers and contributors are not responsible for any misuse, unauthorized deployment, or illegal activity conducted using this software.
 
 ---
 
