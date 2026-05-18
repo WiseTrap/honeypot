@@ -108,7 +108,7 @@ sudo systemctl reload apache2
 
 If you have not created a self-signed SSL wildcard certificate yet, please refer to the following guide before continuing:
 
-[SSL_WILDCARD.md](https://github.com/WiseTrap/honeypot/blob/main/Setup/Linux/SSL_Linux.md)
+[SSL_Linux.md](https://github.com/WiseTrap/honeypot/blob/main/Setup/Linux/SSL_Linux.md)
 
 This step is required before configuring the HTTPS (443) virtual host.
 
