@@ -1,4 +1,4 @@
-# WISETrap SSL Wildcard Setup (Self-Signed CA)
+# WISETrap SSL Wildcard Setup for Ubuntu (Self-Signed CA)
 
 This document explains how to create and use a self-signed Wildcard SSL certificate for WISETrap internal environment.
 
