@@ -26,9 +26,9 @@
 
             <!-- Skills -->
             <div class="mb-4">
-                <span class="badge bg-primary p-2">HTML</span>
-                <span class="badge bg-primary p-2">CSS</span>
-                <span class="badge bg-primary p-2">Bootstrap</span>
+                <span class="badge bg-primary p-2">alaa</span>
+                <span class="badge bg-primary p-2">aya</span>
+                <span class="badge bg-primary p-2">hadeel</span>
                 <span class="badge bg-primary p-2">JavaScript</span>
                 <span class="badge bg-primary p-2">PHP</span>
             </div>
