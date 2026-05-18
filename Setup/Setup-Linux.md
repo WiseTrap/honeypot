@@ -4,17 +4,6 @@ This guide walks you through installing the WISETrap multi-vector honeypot frame
 
 WISETrap is a modular cybersecurity honeypot platform designed to simulate vulnerable web applications and attack surfaces for monitoring, logging, and analyzing malicious activity.
 
-The framework supports multiple trap types, including:
-
-- Fake login panels (credential harvesting traps)
-- SQL Injection traps (soon)
-- XSS traps (soon)
-- File upload traps (soon)
-- 0Day Custom web vulnerability simulations (soon)
-- Additional extensible trap modules (soon)
-
-WISETrap records attacker interactions such as IP addresses, timestamps, payloads, user agents, submitted credentials, uploaded files, and other request data for security analysis and research purposes.
-
 ---
 
 ## Prerequisites
@@ -115,7 +104,7 @@ sudo systemctl reload apache2
 
 If you have not created a self-signed SSL wildcard certificate yet, please refer to the following guide before continuing:
 
-[SSL_WILDCARD.md](https://github.com/WiseTrap/honeypot/blob/main/SSL_WILDCARD.md)
+[SSL_WILDCARD.md](https://github.com/WiseTrap/honeypot/blob/main/Setup/SSL_WILDCARD.md)
 
 This step is required before configuring the HTTPS (443) virtual host.
 
