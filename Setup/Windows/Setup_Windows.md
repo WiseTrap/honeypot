@@ -181,6 +181,7 @@ Find the following lines:
 ```ini
 ;extension=pdo_mysql
 ;extension=mysqli
+;extension=openssl
 ```
 
 Remove the semicolon (`;`) to enable and **Save the file**.
