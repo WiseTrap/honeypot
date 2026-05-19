@@ -103,122 +103,20 @@ openssl x509 -req -in wildcard.wise.local.csr -CA wise-rootCA.crt -CAkey wise-ro
 Create SSL directory:
 
 ```powershell
-mkdir C:\Apache\ssl
+mkdir C:\Apache24\ssl
 ```
 
 Copy files:
 
 ```powershell
-copy wise-rootCA.crt C:\Apache\ssl\
-copy wildcard.wise.local.crt C:\Apache\ssl\
-copy wildcard.wise.local.key C:\Apache\ssl\
+copy wise-rootCA.crt C:\Apache24\ssl\
+copy wildcard.wise.local.crt C:\Apache24\ssl\
+copy wildcard.wise.local.key C:\Apache24\ssl\
 ```
 
 ---
 
-## Step 7: Configure Apache HTTP Virtual Host
-
-Open:
-
-```
-C:\Apache\conf\extra\honeypot-http.conf
-```
-
-Add:
-
-```apache
-<VirtualHost *:80>
-    ServerName honeypot.wise.local
-
-    DocumentRoot "C:/Apache/htdocs/honeypot/Public"
-
-    <Directory "C:/Apache/htdocs/honeypot/Public">
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    ErrorLog "logs/honeypot_http_error.log"
-    CustomLog "logs/honeypot_http_access.log" common
-</VirtualHost>
-```
-
----
-
-## Step 8: Configure Apache SSL Virtual Host
-
-Open:
-
-```
-C:\Apache\conf\extra\honeypot-ssl.conf
-```
-
-Add:
-
-```apache
-<VirtualHost *:443>
-    ServerName honeypot.wise.local
-
-    DocumentRoot "C:/Apache/htdocs/honeypot/Public"
-
-    <Directory "C:/Apache/htdocs/honeypot/Public">
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    SSLEngine on
-
-    SSLCertificateFile "C:/Apache/ssl/wildcard.wise.local.crt"
-    SSLCertificateKeyFile "C:/Apache/ssl/wildcard.wise.local.key"
-
-    ErrorLog "logs/honeypot_ssl_error.log"
-    CustomLog "logs/honeypot_ssl_access.log" common
-</VirtualHost>
-```
-
----
-
-## Step 9: Enable Apache Modules and Virtual Hosts
-
-Open:
-
-```
-C:\Apache\conf\httpd.conf
-```
-
-Ensure the following modules are enabled:
-
-```apache
-LoadModule rewrite_module modules/mod_rewrite.so
-LoadModule ssl_module modules/mod_ssl.so
-```
-
-Add the following lines at the bottom of the file:
-
-```apache
-Include conf/extra/honeypot-http.conf
-Include conf/extra/honeypot-ssl.conf
-```
-
----
-
-## Step 10: Restart Apache
-
-Open PowerShell as Administrator:
-
-```powershell
-C:\Apache\bin\httpd.exe -k restart
-```
-
-If Apache is not installed as a service yet:
-
-```powershell
-C:\Apache\bin\httpd.exe -k install
-C:\Apache\bin\httpd.exe -k start
-```
-
----
-
-## Step 11: Trust Root Certificate on Windows
+## Step 7: Trust Root Certificate on Windows
 
 1. Press `Win + R`
 2. Run:
@@ -241,37 +139,5 @@ C:\Apache\bin\httpd.exe -k start
    ```
 
 6. Complete the import wizard
-
----
-
-## Step 12: Configure Local DNS Resolution
-
-Open:
-
-```
-C:\Windows\System32\drivers\etc\hosts
-```
-
-Add:
-
-```txt
-127.0.0.1 honeypot.wise.local
-127.0.0.1 cp.wise.local
-127.0.0.1 api.wise.local
-```
-
-Save the file.
-
----
-
-## Result
-
-WISETrap now supports trusted internal HTTPS communication for:
-
-- https://honeypot.wise.local
-- https://cp.wise.local
-- https://api.wise.local
-
-After importing the Root CA certificate, browsers should no longer display SSL warnings.
 
 ---
