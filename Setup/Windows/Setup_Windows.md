@@ -41,7 +41,14 @@ The framework is intended for defensive cybersecurity operations, security resea
 
 ---
 
-## Step 5: Configure Environment Variables (PATH)
+## Step 5: Install Git
+- Download Git  v2.x from:
+  [https://git-scm.com/install/windows](https://git-scm.com/install/windows)
+    - Default Settings.
+
+---
+
+## Step 6: Configure Environment Variables (PATH)
 Add the following paths to Windows PATH:
 - OpenSSL:
   ```
@@ -74,7 +81,7 @@ Add the following paths to Windows PATH:
 
 ---
 
-## Step 6: Verify Installation
+## Step 7: Verify Installation
 Run in PowerShell or CMD:
 
 ```bash
@@ -88,12 +95,85 @@ Expected result: all commands return version numbers.
 
 ---
 
-## Step 7: Enable Required PHP Extensions
+## Step 8: Download WISETrap
+Clone the official WISETrap repository:
+
+```powershell
+git clone https://github.com/WiseTrap/honeypot.git C:\Apache24\htdocs\honeypot
+```
+
+After cloning, the project should exist at:
+
+```text
+C:\Apache24\htdocs\honeypot
+```
+
+---
+
+## Step 9: Configure Environment File
+The project uses a local `.env` file for sensitive configuration such as:
+
+- Database credentials
+- Application URL
+- Secret keys
+- Internal honeypot configuration
+
+The `.env` file is intentionally excluded from Git version control and must be created manually.
+
+Create the environment file:
+
+```powershell
+copy C:\Apache24\htdocs\honeypot\.env.example C:\Apache24\htdocs\honeypot\.env
+```
 
 Open:
 
-```text
-C:\php\php.ini
+```powershell
+notepad C:\Apache24\htdocs\honeypot\.env
+```
+
+Example configuration:
+
+```env
+DOMAIN=honeypot.wise.local
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=wisedb
+
+DB_USER=wiseUser
+DB_PASSWORD=W1se@2026#SecurePwd
+```
+
+Save the file after editing.
+
+---
+
+## Step 10: Import Database
+Import the prepared SQL file included with the project.
+
+Open PowerShell:
+
+```powershell
+Get-Content C:\Apache24\htdocs\honeypot\Databases.sql | mysql -u root -p
+```
+
+Enter your MySQL root password when prompted.
+
+---
+
+## Step 11: Enable Required PHP Extensions
+
+Create the main PHP configuration file:
+
+```powershell
+copy C:\php\php.ini-production C:\php\php.ini
+```
+
+Open:
+
+```powershell
+notepad C:\php\php.ini
 ```
 
 Find the following lines:
@@ -107,7 +187,7 @@ Remove the semicolon (`;`) to enable and **Save the file**.
 
 ---
 
-## Step 8: SSL Certificate Setup (Required)
+## Step 12: SSL Certificate Setup (Required)
 
 This step is required before configuring HTTPS (443) for WISETrap.
 
@@ -127,7 +207,7 @@ You must complete SSL setup before continuing with Apache HTTPS virtual host con
 
 ---
 
-## Step 9: Configure Apache HTTP Virtual Host
+## Step 13: Configure Apache HTTP Virtual Host
 
 Open:
 
@@ -160,7 +240,7 @@ Add:
 
 ---
 
-## Step 10: Configure Apache SSL Virtual Host
+## Step 14: Configure Apache SSL Virtual Host
 
 Open:
 
@@ -171,6 +251,16 @@ notepad C:\Apache24\conf\extra\honeypot-ssl.conf
 Add:
 
 ```apache
+Listen 443
+
+SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
+SSLHonorCipherOrder On
+
+SSLCipherSuite HIGH:!aNULL:!MD5:!3DES
+SSLProxyCipherSuite HIGH:!aNULL:!MD5:!3DES
+
+SSLSessionCache "shmcb:C:/Apache24/logs/ssl_scache(512000)"
+SSLSessionCacheTimeout 300
 <VirtualHost *:443>
     ServerName honeypot.wise.local
     ServerAlias *.wise.local
@@ -228,12 +318,12 @@ Add:
 
 ---
 
-## Step 11: Enable Apache Modules and Virtual Hosts
+## Step 15: Enable Apache Modules and Virtual Hosts
 
 Open:
 
 ```
-C:\Apache24\conf\httpd.conf
+notepad C:\Apache24\conf\httpd.conf
 ```
 Update the following directive:
 
@@ -265,6 +355,7 @@ Ensure the following modules are enabled:
 LoadModule ssl_module modules/mod_ssl.so
 LoadModule rewrite_module modules/mod_rewrite.so
 LoadModule headers_module modules/mod_headers.so
+LoadModule socache_shmcb_module modules/mod_socache_shmcb.so
 ```
 
 ---
@@ -279,7 +370,6 @@ PHPIniDir "C:/php"
 LoadModule php_module "C:/php/php8apache2_4.dll"
 AddType application/x-httpd-php .php
 
-Include conf/extra/httpd-ssl.conf
 Include conf/extra/honeypot-http.conf
 Include conf/extra/honeypot-ssl.conf
 ```
@@ -287,29 +377,29 @@ Include conf/extra/honeypot-ssl.conf
 > The PHP Apache module filename **php8apache2_4.dll** may vary depending on the installed PHP version.
 ---
 
-## Step 12: Restart Apache
+## Step 16: Restart Apache
 
 Open PowerShell as Administrator:
 
 ```powershell
-C:\Apache24\bin\httpd.exe -k restart
+httpd -k restart
 ```
 
 If Apache is not installed as a service yet:
 
 ```powershell
-C:\Apache24\bin\httpd.exe -k install
-C:\Apache24\bin\httpd.exe -k start
+httpd -k install
+httpd -k start
 ```
 
 ---
 
-## Step 13: Configure Local DNS Resolution
+## Step 17: Configure Local DNS Resolution
 
 Open:
 
 ```
-C:\Windows\System32\drivers\etc\hosts
+notepad C:\Windows\System32\drivers\etc\hosts
 ```
 
 Add:
