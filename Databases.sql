@@ -45,12 +45,18 @@ INSERT INTO Users_Groups (GroupName_En, GroupName_Ar)
            ('SQL Injection Trap', 'مصيدة حقن قواعد البيانات');
 INSERT INTO Users (Username, Password, Email, PhoneNumber, SubscriptionDate, GroupId, Status)
     VALUES ('alaa','d4d5fcae6b91e068fe585e920bf3f49dba147955','alaa@wisetrap.org','0795888291','2026-05-15',1,1),
+           ('yasmeen','d4d5fcae6b91e068fe585e920bf3f49dba147955','yasmeen@wisetrap.org','0792058083','2026-05-21',1,1),
+           ('aya','d4d5fcae6b91e068fe585e920bf3f49dba147955','aya@wisetrap.org','0798625675','2026-05-21',1,1),
+           ('hadeel','d4d5fcae6b91e068fe585e920bf3f49dba147955','hadeel@wisetrap.org','0788415530','2026-05-21',1,1),
            ('admin','18ebde30d6f04e1fe911a0e326cb56864ea3447e','login@wisetrap.org','0785685087','2026-05-15',2,1),
            ('root','18ebde30d6f04e1fe911a0e326cb56864ea3447e','sql@wisetrap.org','0788665577','2026-05-15',3,1);
 INSERT INTO Users_Profiles (UserId,FirstName_En, LastName_En, Address_En,FirstName_Ar, LastName_Ar, Address_Ar,DOB, Image)
-    VALUES (1,'Alaa','Alshalan','Hashemite Kingdom','الاء','الشعلان','المملكة الاردنية الهاشمية','1992-12-17','avatar.jpg'),
-           (2,'Wise','Trap','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg'),
-           (3,'Wise','SQL','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg');
+    VALUES (1,'Alaa','Alshalan','Hashemite Kingdom','الاء','الشعلان','المملكة الاردنية الهاشمية','2003-08-18','avatar.jpg'),
+           (2,'Yasmeen','AbuReesha','Hashemite Kingdom','ياسمين','ابوريشه','المملكة الاردنية الهاشمية','2004-08-05','avatar.jpg'),
+           (3,'Aya','AlSaifi','Hashemite Kingdom','ايه','الصيفي','المملكة الاردنية الهاشمية','2004-01-13','avatar.jpg'),
+           (4,'Hadeel','Hushki','Hashemite Kingdom','هديل','حشكي','المملكة الاردنية الهاشمية','2004-08-26','avatar.jpg'),
+           (5,'Wise','Trap','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg'),
+           (6,'Wise','SQL','From world','الفخ','الذكي','من العالم','1992-12-17','trap.jpg');
 
 CREATE TABLE Attackers (
     attacker_id BIGINT PRIMARY KEY AUTO_INCREMENT,
