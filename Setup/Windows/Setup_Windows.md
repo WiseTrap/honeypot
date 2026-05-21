@@ -397,21 +397,11 @@ httpd -k start
 
 ## Step 17: Configure Local DNS Resolution
 
-Open:
+Use PowerShell as administrator (Run as Administrator), then execute:
 
+```powershell
+Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "`n127.0.0.1 honeypot.wise.local"
 ```
-notepad C:\Windows\System32\drivers\etc\hosts
-```
-
-Add:
-
-```txt
-127.0.0.1 honeypot.wise.local
-127.0.0.1 cp.wise.local
-127.0.0.1 api.wise.local
-```
-
-Save the file.
 
 ---
 
@@ -420,8 +410,6 @@ Save the file.
 WISETrap now supports trusted internal HTTPS communication for:
 
 - https://honeypot.wise.local
-- https://cp.wise.local
-- https://api.wise.local
 
 After importing the Root CA certificate, browsers should no longer display SSL warnings.
 
