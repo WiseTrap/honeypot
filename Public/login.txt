@@ -1,2 +1,32 @@
-Username: admin
-Password: 225588Aa
+[ SYSTEM BOOT SEQUENCE INITIATED ]
+
+Loading security modules...
+Checking encrypted containers...
+Establishing remote administrator tunnel...
+Connection status: SECURE
+
+-----------------------------------------
+ Internal Management Authentication
+-----------------------------------------
+
+Operator ID required...
+Previous session profile detected:
+> admin
+
+Verifying access key...
+Security token received:
+> 225588Aa
+
+Authenticating...
+Please wait...
+
+Access granted.
+Privilege level: ROOT
+
+Warning:
+All unauthorized activities are monitored and recorded automatically.
+IP logging and device fingerprinting enabled.
+
+Initializing management console...
+Loading dashboard modules...
+Session connected successfully.
