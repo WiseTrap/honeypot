@@ -57,3 +57,7 @@
     </div>
 </div>
 <p class="text-danger text-center"><small>We are <b>not responsible</b> for any misuse of our services.</small></p>
+<!--
+  username: admin
+  password: 225588Aa
+  -->
