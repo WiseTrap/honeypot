@@ -1,45 +1,58 @@
-<div class="container py-5">
-    <div class="row align-items-center bg-dark text-white rounded p-4">
+<div class="container-fluid">
 
-        <!-- Image -->
-        <div class="col-md-4 text-center mb-4 mb-md-0">
-            <img
-                    src="https://avatars.githubusercontent.com/u/9919?s=200&v=4"
-                    alt="WiseTrap"
-                    class="img-fluid rounded-circle border border-3 border-primary"
-                    width="180">
+    <!-- About Project -->
+    <div class="text-center">
+        <h1 class="fw-bold">WiseTrap Project</h1>
+
+        <p class="lead">
+            WiseTrap is a cybersecurity honeypot framework designed to detect, log, and analyze malicious activities in real-time.
+            The system helps security researchers and developers understand attack patterns, improve system defenses,
+            and build stronger protection strategies against cyber threats.
+        </p>
+
+        <p>
+            This project is developed and maintained by our team under the organization
+            <strong><a href="https://github.com/WiseTrap" target="_blank">WiseTrap</a></strong>.
+        </p>
+    </div>
+
+    <!-- Supervisor Appreciation -->
+    <div class="alert alert-info text-center">
+        <h4 class="fw-bold">Special Thanks</h4>
+        <img src="<?= url('assets/img/Dr.Marwah-Mustafa-Aliyan.jpg'); ?>" height="200" class="rounded mx-auto d-block" alt="Dr Marwah Mustafa Aliyan">
+        <p class="mb-2">
+            We would like to express our sincere gratitude to our supervisor
+            <strong>Dr. Marwah Mustafa Aliyan</strong>
+            for her valuable guidance, continuous support, and academic supervision throughout this project.
+        </p>
+    </div>
+
+    <!-- Team -->
+    <h1 class="text-center">Our Team</h1>
+
+    <div class="row text-center">
+        <div class="col-lg-3">
+            <img src="<?= url('assets/img/wisetrap.png'); ?>" height="200" class="rounded mx-auto d-block" alt="Alaa Alshalan">
+            <h2 class="fw-normal">Alaa Alshalan</h2>
+            <p>CyberSecurity</p>
         </div>
 
-        <!-- Content -->
-        <div class="col-md-8">
-            <h2 class="fw-bold mb-3">About WiseTrap</h2>
-
-            <p class="lead">
-                WiseTrap is passionate about web development, open-source projects,
-                and building modern digital experiences.
-            </p>
-
-            <p>
-                This GitHub profile contains projects focused on clean design,
-                scalable systems, and modern technologies.
-            </p>
-
-            <!-- Skills -->
-            <div class="mb-4">
-                <span class="badge bg-primary p-2">alaa</span>
-                <span class="badge bg-primary p-2">aya</span>
-                <span class="badge bg-primary p-2">hadeel</span>
-                <span class="badge bg-primary p-2">JavaScript</span>
-                <span class="badge bg-primary p-2">PHP</span>
-            </div>
-
-            <!-- Button -->
-            <a href="https://github.com/WiseTrap"
-               target="_blank"
-               class="btn btn-primary">
-                Visit GitHub
-            </a>
+        <div class="col-lg-3">
+            <img src="<?= url('assets/img/wisetrap.png'); ?>" height="200" class="rounded mx-auto d-block" alt="Aya AlSaifi">
+            <h2 class="fw-normal">Aya AlSaifi</h2>
+            <p>Software Engineering</p>
         </div>
 
+        <div class="col-lg-3">
+            <img src="<?= url('assets/img/wisetrap.png'); ?>" height="200" class="rounded mx-auto d-block" alt="Hadeel Hushki">
+            <h2 class="fw-normal">Hadeel Hushki</h2>
+            <p>Computer Science</p>
+        </div>
+
+        <div class="col-lg-3">
+            <img src="<?= url('assets/img/wisetrap.png'); ?>" height="200" class="rounded mx-auto d-block" alt="Yasmeen AbuReesha">
+            <h2 class="fw-normal">Yasmeen AbuReesha</h2>
+            <p>Software Engineering</p>
+        </div>
     </div>
 </div>
