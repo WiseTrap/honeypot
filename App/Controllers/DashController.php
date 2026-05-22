@@ -3,6 +3,7 @@
 namespace WiseTrap\App\Controllers;
 
 use Throwable;
+use WiseTrap\App\Models\DashboardModel;
 use WiseTrap\App\Models\UserModel;
 use WiseTrap\Core\Application;
 use WiseTrap\Core\Response;
@@ -23,6 +24,7 @@ class DashController extends Controller
 
             return $this->render('dashboard.index', [
                 'userProfile'   => $userProfile,
+                'stats' => (new DashboardModel())->stats()
             ]);
         } catch (Throwable $e) {
             echo '<pre>Error in ProjectController::index(): '

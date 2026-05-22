@@ -1,4 +1,7 @@
-<?php /** @var $userProfile */ ?>
+<?php
+/** @var $userProfile */
+/** @var array $stats */
+?>
 <div class="row align-items-center mt-2">
     <div class="col-12 col-md-auto order-md-1 d-flex align-items-center justify-content-center mb-4 mb-md-0">
         <div class="text-info me-2">
@@ -21,7 +24,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h4 class="fs-sm fw-normal text-body-secondary mb-1"><?= 'Attackers'; ?></h4>
-                        <div class="fs-4 fw-semibold"><?= 10; ?></div>
+                        <div class="fs-4 fw-semibold"><?= e($stats['attackers']); ?></div>
                     </div>
                     <div class="col-auto">
                         <div class="WISEColor">
@@ -41,7 +44,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h4 class="fs-sm fw-normal text-body-secondary mb-1"><?= 'Logs'; ?></h4>
-                        <div class="fs-4 fw-semibold"><?= 150; ?></div>
+                        <div class="fs-4 fw-semibold"><?= e($stats['logs']); ?></div>
                     </div>
                     <div class="col-auto">
                         <div class="WISEColor">
@@ -66,7 +69,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h4 class="fs-sm fw-normal text-body-secondary mb-1"><?= 'Traps'; ?></h4>
-                        <div class="fs-4 fw-semibold"><?= 2; ?></div>
+                        <div class="fs-4 fw-semibold"><?= e($stats['traps']); ?></div>
                     </div>
                     <div class="col-auto">
                         <div class="WISEColor">
@@ -85,7 +88,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h4 class="fs-sm fw-normal text-body-secondary mb-1"><?= 'Bots' ?></h4>
-                        <div class="fs-4 fw-semibold"><?= 1; ?></div>
+                        <div class="fs-4 fw-semibold"><?= e($stats['bots']); ?></div>
                     </div>
                     <div class="col-auto">
                         <div class="WISEColor">
