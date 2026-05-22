@@ -79,7 +79,30 @@ DB_PASSWORD=W1se@2026#SecurePwd
 
 ---
 
-## Step 3.2: Import Database
+## Step 3.2: Configure Server Timezone
+
+Set the server timezone to Jordan timezone to ensure that PHP, MySQL, logs, and honeypot events use the correct local time.
+
+```bash
+sudo timedatectl set-timezone Asia/Amman
+timedatectl
+```
+
+Expected output:
+
+```text
+Time zone: Asia/Amman (+03, +0300)
+```
+
+Restart MySQL service:
+
+```bash
+sudo systemctl restart mysql
+```
+
+---
+
+## Step 3.3: Import Database
 Import the prepared SQL file included in the project:
 
 ```bash
