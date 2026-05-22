@@ -58,7 +58,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-end text-small">
                         <li><a class="dropdown-item <?= isActive('settings'); ?>" href="<?= url('settings'); ?>"><?= 'Settings'; ?></a></li>
-                        <li><a class="dropdown-item <?= isActive('profile'); ?>" href="<?= url('profile'); ?>"><?= 'Profile'; ?></a></li>
+                        <!--<li><a class="dropdown-item <?= isActive('profile'); ?>" href="<?= url('profile'); ?>"><?= 'Profile'; ?></a></li>-->
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?= url('logout'); ?>"><?= 'logout'; ?></a></li>
                     </ul>
