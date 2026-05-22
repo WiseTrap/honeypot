@@ -41,7 +41,7 @@ CREATE TABLE Users_Profiles (
 ) ENGINE=InnoDB;
 INSERT INTO Users_Groups (GroupName_En, GroupName_Ar)
     VALUES ('Administrator', 'مسؤول النظام'),
-           ('Login Trap', 'فخ تسجيل الدخول'),
+           ('Information disclosure', 'الإفصاح عن المعلومات'),
            ('SQL Injection Trap', 'مصيدة حقن قواعد البيانات');
 INSERT INTO Users (Username, Password, Email, PhoneNumber, SubscriptionDate, GroupId, Status)
     VALUES ('alaa','d4d5fcae6b91e068fe585e920bf3f49dba147955','alaa@wisetrap.org','0795888291','2026-05-15',1,1),
