@@ -43,7 +43,7 @@ class HoneypotLogger
             return;
         }
         $endpointId = (int) $group['trap_endpoint_id'];
-        $ip         = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+        $ip = self::getClientIp();
         $userAgent  = $_SERVER['HTTP_USER_AGENT'] ?? '';
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
         $method     = $_SERVER['REQUEST_METHOD'] ?? 'GET';
@@ -67,5 +67,20 @@ class HoneypotLogger
          */
         $stmt = $pdo->prepare("INSERT INTO AttackLogs (attacker_id, endpoint_id, requested_url, timestamp, http_method, status_code, request_data, response_data) VALUES (?, ?, ?, NOW(), ?, ?, ?, ?)");
         $stmt->execute([$attackerId, $endpointId, $requestUri, $method, http_response_code(), json_encode(['GET'  => $_GET, 'POST' => $_POST], JSON_UNESCAPED_UNICODE), null]);
+    }
+
+    private static function getClientIp(): string
+    {
+        /*
+         * Cloudflare real IP
+         */
+        if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            return $_SERVER['HTTP_CF_CONNECTING_IP'];
+        }
+
+        /*
+         * Fallback
+         */
+        return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
     }
 }
