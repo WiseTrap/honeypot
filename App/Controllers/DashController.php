@@ -5,6 +5,8 @@ namespace WiseTrap\App\Controllers;
 use Throwable;
 use WiseTrap\App\Models\UserModel;
 use WiseTrap\Core\Application;
+use WiseTrap\Core\Response;
+use WiseTrap\Core\UpdateService;
 
 class DashController extends Controller
 {
@@ -50,5 +52,17 @@ class DashController extends Controller
     {
         $this->setLayoutParam('title', 'Settings');
         return $this->render('dashboard.settings');
+    }
+    public function checkUpdates(): never
+    {
+        (new Response())->json(
+            (new UpdateService())->check()
+        );
+    }
+    public function installUpdate(): never
+    {
+        (new Response())->json(
+            (new UpdateService())->install()
+        );
     }
 }

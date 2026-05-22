@@ -20,7 +20,11 @@ Router::group(['prefix' => '/dashboard'], function () {
 });
 Router::get('/about', [DashController::class, 'about'], [AdminMiddleware::class]);
 Router::get('/contact', [DashController::class, 'contact'], [AdminMiddleware::class]);
-Router::get('/settings', [DashController::class, 'settings'], [AdminMiddleware::class]);
+Router::group(['prefix' => '/settings'], function () {
+    Router::get('/', [DashController::class, 'settings'], [AdminMiddleware::class]);
+    Router::get('/check-updates', [DashController::class, 'checkUpdates'], [AdminMiddleware::class]);
+    Router::post('/install-update', [DashController::class, 'installUpdate'], [AdminMiddleware::class]);
+});
 Router::get('/profile', [DashController::class, 'profile'], [AdminMiddleware::class]);
 Router::group(['prefix' => '/customers'], function () {
     Router::get('/', [CustomersController::class, 'index'], [AdminMiddleware::class]);
