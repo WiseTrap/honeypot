@@ -100,7 +100,7 @@ CREATE TABLE Alerts (
 );
 INSERT INTO TrapEndpoints (endpoint_name, endpoint_url, description, is_active)
  VALUES
-     ('Login Trap', '/login.txt', 'Fake login file used to capture unauthorized access attempts', TRUE),
+     ('Information disclosure', '/login.txt', 'Fake login file used to capture unauthorized access attempts', TRUE),
      ('SQL Injection', '/id=1', 'SQL Injection Honeypot', TRUE);
 
 ALTER TABLE Users_Groups ADD trap_endpoint_id BIGINT NULL, ADD CONSTRAINT fk_group_trap FOREIGN KEY (trap_endpoint_id) REFERENCES TrapEndpoints(endpoint_id) ON DELETE SET NULL ON UPDATE CASCADE;
