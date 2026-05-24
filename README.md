@@ -1,4 +1,4 @@
-# honeypot - WiseTrap
+# Honeypot _ WiseTrap
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/WiseTrap/honeypot/main/Public/assets/img/wisetrap.png" alt="honeypot">
