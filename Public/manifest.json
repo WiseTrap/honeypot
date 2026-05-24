@@ -1,0 +1,53 @@
+{
+  "short_name": "Wise Trap",
+  "name": "Wise Trap",
+  "description": "Wise Trap",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#2b3035",
+  "theme_color": "#212529",
+  "icons": [
+    {
+      "src": "assets/img/mainfest/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/mainfest/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/mainfest/icon-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/mainfest/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/mainfest/icon-310x310.png",
+      "sizes": "310x310",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/img/mainfest/icon-310x310.png",
+      "type": "image/png",
+      "sizes": "310x310",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "assets/img/mainfest/icon-310x310.png",
+      "type": "image/png",
+      "sizes": "310x310",
+      "form_factor": "wide"
+    }
+  ]
+}
