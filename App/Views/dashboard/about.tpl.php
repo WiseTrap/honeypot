@@ -26,7 +26,6 @@
         </p>
     </div>
 
-    <!-- Team -->
     <h1 class="text-center">Our Team</h1>
 
     <div class="row text-center">
