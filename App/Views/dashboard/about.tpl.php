@@ -19,7 +19,6 @@
     <!-- Supervisor Appreciation -->
     <div class="alert alert-info text-center">
         <h4 class="fw-bold">Special Thanks</h4>
-        <img src="<?= url('assets/img/Dr.Marwah-Mustafa-Aliyan.jpg'); ?>" height="200" class="rounded mx-auto d-block" alt="Dr Marwah Mustafa Aliyan">
         <p class="mb-2">
             We would like to express our sincere gratitude to our supervisor
             <strong>Dr. Marwah Mustafa Aliyan</strong>
